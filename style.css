@@ -1,3 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Ultra&display=swap");
+
+* {
+    font-family: "PT Serif", serif;
+}
 body {
-    background-color: aquamarine;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    font-family: "Ultra", serif;
+    font-size: 40px;
+}
+.top-logo {
+    height: 150px;
+}
+
+.header {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.book-form {
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    max-width: 800px;
+    align-items: center;
 }

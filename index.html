@@ -7,5 +7,35 @@
         <script src="index.js" defer></script>
         <title>Library</title>
     </head>
-    <body></body>
+    <body>
+        <div class="header">
+            <h1>The Library of Odin</h1>
+            <img
+                src="./images/TOP Logo.png"
+                alt="The Odin Project Logo"
+                class="top-logo" />
+        </div>
+        <div class="book-form">
+            <form action="POST" class="form">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" />
+
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author" />
+
+                <label for="pages">Pages</label>
+                <input type="number" name="pages" id="pages" />
+
+                <label for="read">Have you read this book?</label>
+                <label
+                    ><input type="radio" name="has-read" id="read" /> Read
+                </label>
+                <label
+                    ><input type="radio" name="has-read" id="not-read" /> Not
+                    Read
+                </label>
+            </form>
+        </div>
+        <div class="display-books"></div>
+    </body>
 </html>
