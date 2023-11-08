@@ -16,20 +16,35 @@
                 class="top-logo" />
         </div>
         <div class="book-form">
-            <form action="POST" class="form">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" />
+            <form action="" class="form">
+                <h1 class="title">Add a new book</h1>
 
-                <label for="author">Author</label>
-                <input type="text" name="author" id="author" />
+                <div class="inputContainer">
+                    <input type="text" class="input" placeholder="Title" />
+                    <label for="" class="label">Title</label>
+                </div>
 
-                <label for="pages">Pages</label>
-                <input type="number" name="pages" id="pages" />
+                <div class="inputContainer">
+                    <input type="text" class="input" placeholder="Author" />
+                    <label for="" class="label">Author</label>
+                </div>
 
-                <label
-                    ><input type="checkbox" name="has-read" id="read" /> I have
-                    already read this book
-                </label>
+                <div class="inputContainer">
+                    <input
+                        type="number"
+                        pattern="[A-Za-z\s]*"
+                        class="input"
+                        placeholder="Pages"
+                        oninvalid="this.setCustomValidity('Please enter a valid number')" />
+                    <label for="" class="label">Pages</label>
+                </div>
+
+                <div class="checkbox">
+                    <input type="checkbox" class="checkbox-inpt" />Have you read
+                    this book?
+                </div>
+
+                <input type="submit" class="submitBtn" value="Sign up" />
             </form>
         </div>
         <div class="display-books"></div>

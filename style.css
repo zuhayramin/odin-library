@@ -33,17 +33,126 @@ h1 {
 
 .book-form {
     grid-area: sidebar;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "PT Serif", serif;
     display: flex;
-    justify-content: left;
-    background-color: aquamarine;
+    justify-content: center;
+    align-items: center;
 }
 
 .form {
+    background-color: white;
+    width: 300px;
+    /* min-width: 200px; */
+    height: 72vh;
+    border-radius: 8px;
+    padding: 20px 40px;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
+}
+
+.inputContainer {
+    position: relative;
+    height: 45px;
+    width: 90%;
+    margin-bottom: 17px;
+}
+
+.input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #dadce0;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 0 20px;
+    outline: none;
+    background: none;
+    z-index: 1;
+}
+
+/* Hide the placeholder texts (a) */
+
+::placeholder {
+    color: transparent;
+}
+
+.label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 0 4px;
+    background-color: white;
+    color: #dadce0;
+    font-size: 16px;
+    transition: 0.5s;
+    z-index: 0;
+}
+
+.submitBtn {
+    display: block;
+    margin-left: auto;
+    padding: 15px 30px;
+    border: none;
+    background-color: darkgoldenrod;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+.submitBtn:hover {
+    background-color: #dcb36d;
+    transform: translateY(-2px);
+}
+
+.input:focus + .label {
+    top: -7px;
+    left: 3px;
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 600;
+    color: #dcb36d;
+}
+
+.input:focus {
+    border: 2px solid #dcb36d;
+}
+
+.input:not(:placeholder-shown) + .label {
+    top: -7px;
+    left: 3px;
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 600;
+    color: #dcb36d;
+}
+
+.title {
+    font-size: 30px;
+    margin-bottom: 50px;
+    letter-spacing: 0.05rem;
+}
+
+h3 {
+    font-size: 25px;
+    margin: 20px 20px;
+}
+
+/* .form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    /* max-width: 800px; */
-    align-items: stretch;
+    margin: 0 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(7, 1fr);
+    max-width: 800px;
+} */
+
+#read {
+    margin-top: 20px;
 }
 
 .display-books {
