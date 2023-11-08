@@ -16,16 +16,28 @@
                 class="top-logo" />
         </div>
         <div class="book-form">
-            <form action="" class="form">
+            <form
+                enctype="multipart/form-data"
+                class="form"
+                method="post"
+                name="bookinfo">
                 <h1 class="title">Add a new book</h1>
 
                 <div class="inputContainer">
-                    <input type="text" class="input" placeholder="Title" />
+                    <input
+                        type="text"
+                        class="input"
+                        placeholder="Title"
+                        id="title" />
                     <label for="" class="label">Title</label>
                 </div>
 
                 <div class="inputContainer">
-                    <input type="text" class="input" placeholder="Author" />
+                    <input
+                        type="text"
+                        class="input"
+                        placeholder="Author"
+                        id="author" />
                     <label for="" class="label">Author</label>
                 </div>
 
@@ -34,17 +46,24 @@
                         type="number"
                         pattern="[A-Za-z\s]*"
                         class="input"
+                        id="pages"
                         placeholder="Pages"
                         oninvalid="this.setCustomValidity('Please enter a valid number')" />
                     <label for="" class="label">Pages</label>
                 </div>
 
                 <div class="checkbox">
-                    <input type="checkbox" class="checkbox-inpt" />Have you read
-                    this book?
+                    <input
+                        type="checkbox"
+                        class="checkbox-inpt"
+                        id="read" />Have you read this book?
                 </div>
 
-                <input type="submit" class="submitBtn" value="Sign up" />
+                <input
+                    type="submit"
+                    class="submitBtn"
+                    id="submit-btn"
+                    value="Sign up" />
             </form>
         </div>
         <div class="display-books">
