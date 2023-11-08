@@ -5,13 +5,23 @@ document
     .getElementById("submit-btn")
     .addEventListener("click", function (event) {
         event.preventDefault()
-        console.log(form.title.value)
+        const form = document.querySelector("form")
+        let book = new Book(
+            form.title.value,
+            form.author.value,
+            form.pages.value,
+            form.read.checked
+        )
+        console.log(book)
     })
 
 const myLibrary = []
 
-function Book() {
-    // the constructor...
+function Book(title, author, pages, read) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
 }
 
 function addBookToLibrary() {

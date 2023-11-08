@@ -16,11 +16,7 @@
                 class="top-logo" />
         </div>
         <div class="book-form">
-            <form
-                enctype="multipart/form-data"
-                class="form"
-                method="post"
-                name="bookinfo">
+            <form class="form" name="bookinfo">
                 <h1 class="title">Add a new book</h1>
 
                 <div class="inputContainer">
@@ -28,8 +24,9 @@
                         type="text"
                         class="input"
                         placeholder="Title"
+                        name="title"
                         id="title" />
-                    <label for="" class="label">Title</label>
+                    <label for="title" class="label">Title</label>
                 </div>
 
                 <div class="inputContainer">
@@ -37,8 +34,9 @@
                         type="text"
                         class="input"
                         placeholder="Author"
+                        name="author"
                         id="author" />
-                    <label for="" class="label">Author</label>
+                    <label for="author" class="label">Author</label>
                 </div>
 
                 <div class="inputContainer">
@@ -47,15 +45,17 @@
                         pattern="[A-Za-z\s]*"
                         class="input"
                         id="pages"
+                        name="pages"
                         placeholder="Pages"
                         oninvalid="this.setCustomValidity('Please enter a valid number')" />
-                    <label for="" class="label">Pages</label>
+                    <label for="pages" class="label">Pages</label>
                 </div>
 
                 <div class="checkbox">
                     <input
                         type="checkbox"
                         class="checkbox-inpt"
+                        name="read"
                         id="read" />Have you read this book?
                 </div>
 
@@ -71,7 +71,7 @@
                 <div class="book-title">Harry Potter</div>
                 <div class="book-author">J.K Rowling</div>
                 <div class="book-pages">382 Pages</div>
-                <div class="book-not-read">Read</div>
+                <div class="book-read">Read</div>
             </div>
         </div>
         <footer class="footer">Copyright by Zuhayr Amin</footer>
