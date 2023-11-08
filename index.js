@@ -1,4 +1,24 @@
 const form = document.querySelector("form")
+let myLibrary = []
+
+const storedData = localStorage.getItem("myLibrary")
+
+if (storedData !== null) {
+    console.log("Data has been successfully retrieved:", JSON.parse(storedData))
+} else {
+    console.log("No data found for the specified key.")
+}
+
+// if (localStorage.getItem("userLibrary")) {
+//     myLibrary = JSON.parse(localStorage.getItem("userLibrary"))
+//     console.log(myLibrary)
+// }
+
+// if (storedBooksJSON) {
+//     myLibrary = JSON.parse(storedBooksJSON)
+// } else {
+//     myLibrary = []
+// }
 
 // Prevent form submission on button click
 document
@@ -12,10 +32,16 @@ document
             form.pages.value,
             form.read.checked
         )
-        console.log(book)
+        myLibrary.push(book)
+        console.log(myLibrary)
+        console.log(JSON.stringify(myLibrary))
+        try {
+            localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
+            console.log("Data has been stored successfully.")
+        } catch (error) {
+            console.error("Error while storing data in localStorage:", error)
+        }
     })
-
-const myLibrary = []
 
 function Book(title, author, pages, read) {
     this.title = title
