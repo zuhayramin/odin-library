@@ -9,17 +9,6 @@ if (storedData !== null) {
     console.log("No data found for the specified key.")
 }
 
-// if (localStorage.getItem("userLibrary")) {
-//     myLibrary = JSON.parse(localStorage.getItem("userLibrary"))
-//     console.log(myLibrary)
-// }
-
-// if (storedBooksJSON) {
-//     myLibrary = JSON.parse(storedBooksJSON)
-// } else {
-//     myLibrary = []
-// }
-
 // Prevent form submission on button click
 document
     .getElementById("submit-btn")
