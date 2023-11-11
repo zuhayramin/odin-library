@@ -61,8 +61,13 @@ function addBookToLibrary(book) {
     bookPages.innerText = book.pages
 
     const bookRead = document.createElement("div")
-    bookRead.classList.add("book-read")
-    bookRead.innerText = book.read
+    if (book.read === true) {
+        bookRead.classList.add("book-read")
+        bookRead.innerText = "Read"
+    } else if (book.read === false) {
+        bookRead.classList.add("book-not-read")
+        bookRead.innerText = "Not Read"
+    }
 
     newBook.appendChild(bookTitle)
     newBook.appendChild(bookAuthor)
