@@ -58,7 +58,7 @@ function addBookToLibrary(book) {
 
     const bookPages = document.createElement("div")
     bookPages.classList.add("book-pages")
-    bookPages.innerText = book.pages
+    bookPages.innerText = book.pages + " Pages"
 
     const bookRead = document.createElement("div")
     if (book.read === true) {
@@ -76,3 +76,32 @@ function addBookToLibrary(book) {
 
     booksContainer.appendChild(newBook)
 }
+
+function changeStatus(book) {
+    if (book.read === true) {
+        book.classList.remove("book-read")
+        book.classList.add("book-not-read")
+        console.log("Yay")
+    } else {
+        book.classList.remove("book-not-read")
+        book.classList.add("book-read")
+        console.log("Nay")
+    }
+}
+
+const bookRead = document.querySelector(".book-read")
+
+bookRead.addEventListener("click", () => {
+    const bookCard = bookRead.parentElement
+    const bookNodes = bookCard.childNodes
+    console.log(bookNodes[7].classList)
+    if (bookNodes[7].classList == "book-read") {
+        bookNodes[7].classList = "book-not-read"
+        bookNodes[7].classList.remove("book-read")
+        bookNodes[7].innerText = "Not Read"
+    } else {
+        bookNodes[7].classList = "book-read"
+        bookNodes[7].classList.remove("book-not-read")
+        bookNodes[7].innerText = "Read"
+    }
+})
