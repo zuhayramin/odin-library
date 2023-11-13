@@ -6,6 +6,7 @@ const storedData = localStorage.getItem("myLibrary")
 
 if (storedData !== null) {
     console.log("Data has been successfully retrieved:", JSON.parse(storedData))
+    myLibrary = JSON.parse(storedData)
 } else {
     console.log("No data found for the specified key.")
 }
@@ -91,17 +92,3 @@ function addBookToLibrary(book) {
 
     booksContainer.appendChild(newBook)
 }
-
-// bookRead.addEventListener("click", () => {
-//     const bookCard = bookRead.parentElement
-//     const bookNodes = bookCard.childNodes
-//     if (bookNodes[7].classList == "book-read") {
-//         bookNodes[7].classList = "book-not-read"
-//         bookNodes[7].classList.remove("book-read")
-//         bookNodes[7].innerText = "Not Read"
-//     } else {
-//         bookNodes[7].classList = "book-read"
-//         bookNodes[7].classList.remove("book-not-read")
-//         bookNodes[7].innerText = "Read"
-//     }
-// })
