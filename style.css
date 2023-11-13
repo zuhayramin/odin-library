@@ -163,6 +163,7 @@ h3 {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-auto-rows: auto;
+    gap: 20px;
 }
 
 .footer {
@@ -175,6 +176,7 @@ h3 {
 }
 
 .book {
+    min-width: 200px;
     background-color: #dedede;
     border-radius: 10px;
     display: flex;
@@ -188,6 +190,7 @@ h3 {
     font-weight: bold;
     color: darkgoldenrod;
     font-size: 1.5rem;
+    margin-top: 8px;
 }
 
 .book-author {
@@ -197,6 +200,7 @@ h3 {
 
 .book-pages {
     font-size: 1.1rem;
+    margin-bottom: 10px;
 }
 
 .book-read {
@@ -207,7 +211,8 @@ h3 {
     display: flex;
     align-self: center;
     justify-content: center;
-    width: 100%;
+    width: 70%;
+    margin-bottom: 8px;
 }
 
 .book-not-read {
