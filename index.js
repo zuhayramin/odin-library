@@ -44,6 +44,11 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
+Book.prototype.toggleReadStatus = function () {
+    this.read = !this.read
+    console.log(this.read)
+}
+
 function addBookToLibrary(book) {
     const newBook = document.createElement("div")
     newBook.classList.add("book")
@@ -60,35 +65,43 @@ function addBookToLibrary(book) {
     bookPages.classList.add("book-pages")
     bookPages.innerText = book.pages + " Pages"
 
-    const bookRead = document.createElement("div")
-    if (book.read === true) {
-        bookRead.classList.add("book-read")
-        bookRead.innerText = "Read"
-    } else if (book.read === false) {
-        bookRead.classList.add("book-not-read")
-        bookRead.innerText = "Not Read"
-    }
+    const readButton = document.createElement("button")
+    console.log(book.read)
+    book.read === true
+        ? (readButton.classList.add("book-read"),
+          (readButton.innerText = "Read"))
+        : (readButton.classList.add("book-not-read"),
+          (readButton.innerText = "Not Read"))
+
+    readButton.addEventListener("click", () => {
+        book.toggleReadStatus()
+        book.read === true
+            ? (readButton.classList.add("book-read"),
+              readButton.classList.remove("book-not-read"),
+              (readButton.innerText = "Read"))
+            : (readButton.classList.add("book-not-read"),
+              readButton.classList.remove("book-read"),
+              (readButton.innerText = "Not Read"))
+    })
 
     newBook.appendChild(bookTitle)
     newBook.appendChild(bookAuthor)
     newBook.appendChild(bookPages)
-    newBook.appendChild(bookRead)
+    newBook.appendChild(readButton)
 
     booksContainer.appendChild(newBook)
 }
 
-const bookRead = document.querySelector(".book-read")
-
-bookRead.addEventListener("click", () => {
-    const bookCard = bookRead.parentElement
-    const bookNodes = bookCard.childNodes
-    if (bookNodes[7].classList == "book-read") {
-        bookNodes[7].classList = "book-not-read"
-        bookNodes[7].classList.remove("book-read")
-        bookNodes[7].innerText = "Not Read"
-    } else {
-        bookNodes[7].classList = "book-read"
-        bookNodes[7].classList.remove("book-not-read")
-        bookNodes[7].innerText = "Read"
-    }
-})
+// bookRead.addEventListener("click", () => {
+//     const bookCard = bookRead.parentElement
+//     const bookNodes = bookCard.childNodes
+//     if (bookNodes[7].classList == "book-read") {
+//         bookNodes[7].classList = "book-not-read"
+//         bookNodes[7].classList.remove("book-read")
+//         bookNodes[7].innerText = "Not Read"
+//     } else {
+//         bookNodes[7].classList = "book-read"
+//         bookNodes[7].classList.remove("book-not-read")
+//         bookNodes[7].innerText = "Read"
+//     }
+// })
