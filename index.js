@@ -3,6 +3,7 @@ const booksContainer = document.querySelector(".display-books")
 let myLibrary = []
 
 const storedData = localStorage.getItem("myLibrary")
+// localStorage.clear()
 
 if (storedData !== null) {
     console.log("Data has been successfully retrieved:", JSON.parse(storedData))
@@ -66,6 +67,20 @@ function addBookToLibrary(book) {
     bookPages.classList.add("book-pages")
     bookPages.innerText = book.pages + " Pages"
 
+    const btnWrapper = document.createElement("div")
+    btnWrapper.classList.add("btn-wrapper")
+
+    const delBtn = document.createElement("button")
+    const delIcon = document.createElement("img")
+    delIcon.classList.add("del-icon")
+    delIcon.src = "./images/delete.png"
+
+    delBtn.appendChild(delIcon)
+
+    delBtn.addEventListener("click", () => {
+        deleteBook(book)
+    })
+
     const readButton = document.createElement("button")
     console.log(book.read)
     book.read === true
@@ -83,12 +98,52 @@ function addBookToLibrary(book) {
             : (readButton.classList.add("book-not-read"),
               readButton.classList.remove("book-read"),
               (readButton.innerText = "Not Read"))
+
+        try {
+            localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
+            console.log("Data has been stored successfully.")
+        } catch (error) {
+            console.error("Error while storing data in localStorage:", error)
+        }
     })
 
     newBook.appendChild(bookTitle)
     newBook.appendChild(bookAuthor)
     newBook.appendChild(bookPages)
-    newBook.appendChild(readButton)
+
+    btnWrapper.appendChild(readButton)
+    btnWrapper.appendChild(delBtn)
+    newBook.appendChild(btnWrapper)
 
     booksContainer.appendChild(newBook)
+}
+
+function deleteBook(book) {
+    const index = myLibrary.indexOf(book)
+
+    if (index !== -1) {
+        myLibrary = myLibrary.slice(0, index).concat(myLibrary.slice(index + 1))
+    }
+    console.log(myLibrary)
+    emptyLibrary()
+    myLibrary.forEach((book) => {
+        addBookToLibrary(book)
+    })
+
+    // try {
+    //     localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
+    //     console.log("Data has been updated successfully.")
+    // } catch (error) {
+    //     console.error("Error while updating data in localStorage:", error)
+    // }
+
+    // addBookToLibrary(myLibrary)
+}
+
+function emptyLibrary() {
+    const container = document.querySelector(".display-books")
+
+    while (container.firstChild) {
+        container.removeChild(container.firstChild)
+    }
 }

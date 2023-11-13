@@ -205,16 +205,14 @@ h3 {
 }
 
 .book-read {
+    grid-area: readBtn;
     background-color: seagreen;
     color: white;
     border-radius: 10px;
     font-size: 1.1rem;
-    height: 2rem;
     display: flex;
     align-self: center;
     justify-content: center;
-    width: 70%;
-    margin-bottom: 8px;
 }
 
 .book-read,
@@ -223,14 +221,27 @@ h3 {
 }
 
 .book-not-read {
+    grid-area: readBtn;
     background-color: red;
     color: white;
     border-radius: 10px;
     font-size: 1.1rem;
-    height: 2rem;
     display: flex;
     align-self: center;
     justify-content: center;
-    width: 70%;
+}
+
+.btn-wrapper {
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    grid-template-areas: "readBtn delBtn";
+    height: 2rem;
+    width: 100%;
     margin-bottom: 8px;
+    gap: 20px;
+}
+
+.del-icon {
+    grid-area: delBtn;
+    height: 20px;
 }
