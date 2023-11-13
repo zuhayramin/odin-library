@@ -77,24 +77,11 @@ function addBookToLibrary(book) {
     booksContainer.appendChild(newBook)
 }
 
-function changeStatus(book) {
-    if (book.read === true) {
-        book.classList.remove("book-read")
-        book.classList.add("book-not-read")
-        console.log("Yay")
-    } else {
-        book.classList.remove("book-not-read")
-        book.classList.add("book-read")
-        console.log("Nay")
-    }
-}
-
 const bookRead = document.querySelector(".book-read")
 
 bookRead.addEventListener("click", () => {
     const bookCard = bookRead.parentElement
     const bookNodes = bookCard.childNodes
-    console.log(bookNodes[7].classList)
     if (bookNodes[7].classList == "book-read") {
         bookNodes[7].classList = "book-not-read"
         bookNodes[7].classList.remove("book-read")
