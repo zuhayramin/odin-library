@@ -7,7 +7,16 @@ const storedData = localStorage.getItem("myLibrary")
 
 if (storedData !== null) {
     console.log("Data has been successfully retrieved:", JSON.parse(storedData))
-    myLibrary = JSON.parse(storedData)
+    parsedData = JSON.parse(storedData)
+    myLibrary = parsedData.map((bookData) => {
+        const book = new Book(
+            bookData.title,
+            bookData.author,
+            bookData.pages,
+            bookData.read
+        )
+        return book
+    })
 } else {
     console.log("No data found for the specified key.")
 }
@@ -29,12 +38,7 @@ document
             form.read.checked
         )
         myLibrary.push(book)
-        try {
-            localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
-            console.log("Data has been stored successfully.")
-        } catch (error) {
-            console.error("Error while storing data in localStorage:", error)
-        }
+        saveLibrary()
 
         addBookToLibrary(book)
     })
@@ -99,12 +103,7 @@ function addBookToLibrary(book) {
               readButton.classList.remove("book-read"),
               (readButton.innerText = "Not Read"))
 
-        try {
-            localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
-            console.log("Data has been stored successfully.")
-        } catch (error) {
-            console.error("Error while storing data in localStorage:", error)
-        }
+        saveLibrary()
     })
 
     newBook.appendChild(bookTitle)
@@ -130,14 +129,7 @@ function deleteBook(book) {
         addBookToLibrary(book)
     })
 
-    // try {
-    //     localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
-    //     console.log("Data has been updated successfully.")
-    // } catch (error) {
-    //     console.error("Error while updating data in localStorage:", error)
-    // }
-
-    // addBookToLibrary(myLibrary)
+    saveLibrary()
 }
 
 function emptyLibrary() {
@@ -145,5 +137,14 @@ function emptyLibrary() {
 
     while (container.firstChild) {
         container.removeChild(container.firstChild)
+    }
+}
+
+function saveLibrary() {
+    try {
+        localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
+        console.log("Data has been updated successfully.")
+    } catch (error) {
+        console.error("Error while updating data in localStorage:", error)
     }
 }
