@@ -9,20 +9,109 @@ if (storedData !== null) {
     console.log("Data has been successfully retrieved:", JSON.parse(storedData))
     parsedData = JSON.parse(storedData)
     myLibrary = parsedData.map((bookData) => {
-        const book = new Book(
+        let newBook = new Book(
             bookData.title,
             bookData.author,
             bookData.pages,
             bookData.read
         )
-        return book
+        return newBook
     })
 } else {
     console.log("No data found for the specified key.")
 }
 
+// Create a books class
+class Book {
+    constructor(title, author, pages, read) {
+        ;(this.title = title),
+            (this.author = author),
+            (this.pages = pages),
+            (this.read = read)
+    }
+
+    addBookToLibrary() {
+        const newBook = document.createElement("div")
+        newBook.classList.add("book")
+
+        const bookTitle = document.createElement("div")
+        bookTitle.classList.add("book-title")
+        bookTitle.innerText = this.title
+
+        const bookAuthor = document.createElement("div")
+        bookAuthor.classList.add("book-author")
+        bookAuthor.innerText = this.author
+
+        const bookPages = document.createElement("div")
+        bookPages.classList.add("book-pages")
+        bookPages.innerText = this.pages + " Pages"
+
+        const btnWrapper = document.createElement("div")
+        btnWrapper.classList.add("btn-wrapper")
+
+        const delBtn = document.createElement("button")
+        const delIcon = document.createElement("img")
+        delIcon.classList.add("del-icon")
+        delIcon.src = "./images/delete.png"
+
+        delBtn.appendChild(delIcon)
+
+        delBtn.addEventListener("click", () => {
+            this.deleteBook()
+        })
+
+        const readButton = document.createElement("button")
+        console.log(this.read)
+        this.read === true
+            ? (readButton.classList.add("book-read"),
+              (readButton.innerText = "Read"))
+            : (readButton.classList.add("book-not-read"),
+              (readButton.innerText = "Not Read"))
+
+        readButton.addEventListener("click", () => {
+            this.toggleReadStatus()
+            this.read === true
+                ? (readButton.classList.add("book-read"),
+                  readButton.classList.remove("book-not-read"),
+                  (readButton.innerText = "Read"))
+                : (readButton.classList.add("book-not-read"),
+                  readButton.classList.remove("book-read"),
+                  (readButton.innerText = "Not Read"))
+
+            saveLibrary()
+        })
+
+        newBook.appendChild(bookTitle)
+        newBook.appendChild(bookAuthor)
+        newBook.appendChild(bookPages)
+
+        btnWrapper.appendChild(readButton)
+        btnWrapper.appendChild(delBtn)
+        newBook.appendChild(btnWrapper)
+
+        booksContainer.appendChild(newBook)
+    }
+
+    deleteBook() {
+        const index = myLibrary.indexOf(this)
+
+        if (index !== -1) {
+            myLibrary = myLibrary
+                .slice(0, index)
+                .concat(myLibrary.slice(index + 1))
+        }
+        console.log(myLibrary)
+        emptyLibrary()
+        myLibrary.forEach((book) => {
+            book.addBookToLibrary()
+        })
+
+        saveLibrary()
+    }
+}
+
 myLibrary.forEach((book) => {
-    addBookToLibrary(book)
+    book.addBookToLibrary()
 })
 
 // Prevent form submission on button click
@@ -40,96 +129,12 @@ document
         myLibrary.push(book)
         saveLibrary()
 
-        addBookToLibrary(book)
+        book.addBookToLibrary()
     })
-
-function Book(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-}
 
 Book.prototype.toggleReadStatus = function () {
     this.read = !this.read
     console.log(this.read)
-}
-
-function addBookToLibrary(book) {
-    const newBook = document.createElement("div")
-    newBook.classList.add("book")
-
-    const bookTitle = document.createElement("div")
-    bookTitle.classList.add("book-title")
-    bookTitle.innerText = book.title
-
-    const bookAuthor = document.createElement("div")
-    bookAuthor.classList.add("book-author")
-    bookAuthor.innerText = book.author
-
-    const bookPages = document.createElement("div")
-    bookPages.classList.add("book-pages")
-    bookPages.innerText = book.pages + " Pages"
-
-    const btnWrapper = document.createElement("div")
-    btnWrapper.classList.add("btn-wrapper")
-
-    const delBtn = document.createElement("button")
-    const delIcon = document.createElement("img")
-    delIcon.classList.add("del-icon")
-    delIcon.src = "./images/delete.png"
-
-    delBtn.appendChild(delIcon)
-
-    delBtn.addEventListener("click", () => {
-        deleteBook(book)
-    })
-
-    const readButton = document.createElement("button")
-    console.log(book.read)
-    book.read === true
-        ? (readButton.classList.add("book-read"),
-          (readButton.innerText = "Read"))
-        : (readButton.classList.add("book-not-read"),
-          (readButton.innerText = "Not Read"))
-
-    readButton.addEventListener("click", () => {
-        book.toggleReadStatus()
-        book.read === true
-            ? (readButton.classList.add("book-read"),
-              readButton.classList.remove("book-not-read"),
-              (readButton.innerText = "Read"))
-            : (readButton.classList.add("book-not-read"),
-              readButton.classList.remove("book-read"),
-              (readButton.innerText = "Not Read"))
-
-        saveLibrary()
-    })
-
-    newBook.appendChild(bookTitle)
-    newBook.appendChild(bookAuthor)
-    newBook.appendChild(bookPages)
-
-    btnWrapper.appendChild(readButton)
-    btnWrapper.appendChild(delBtn)
-    newBook.appendChild(btnWrapper)
-
-    booksContainer.appendChild(newBook)
-}
-
-function deleteBook(book) {
-    const index = myLibrary.indexOf(book)
-
-    if (index !== -1) {
-        myLibrary = myLibrary.slice(0, index).concat(myLibrary.slice(index + 1))
-    }
-    console.log(myLibrary)
-    emptyLibrary()
-    myLibrary.forEach((book) => {
-        addBookToLibrary(book)
-    })
-
-    saveLibrary()
 }
 
 function emptyLibrary() {
